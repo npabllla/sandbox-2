@@ -1,0 +1,21 @@
+<databaseChangeLog
+        xmlns="http://www.liquibase.org/xml/ns/dbchangelog"
+        xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+        xsi:schemaLocation="
+        http://www.liquibase.org/xml/ns/dbchangelog
+        http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.4.xsd">
+
+    <changeSet id="init" author="kaboblak">
+        <createTable tableName="rooms">
+            <column name="id" type="varchar">
+                <constraints primaryKey="true" nullable="false"/>
+            </column>
+            <column name="words" type="varchar[]">
+                <constraints nullable="false"/>
+            </column>
+            <column name="generated_message" type="text"/>
+            <column name="destination_employee_name" type="varchar"/>
+            <column name="active" type="boolean"/>
+        </createTable>
+    </changeSet>
+</databaseChangeLog>

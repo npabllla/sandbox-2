@@ -1,0 +1,44 @@
+server:
+  port: ${SERVER_PORT:8080}
+spring:
+  datasource:
+    hikari:
+      leak-detection-threshold: 6000
+      maximum-pool-size: 10
+  liquibase:
+    change-log: classpath:db/liquibase-changelog.xml
+    default-schema: birthdays
+    liquibase-schema: birthdays
+springdoc:
+  swagger-ui:
+    path: /swagger-ui.html
+
+logging:
+  level:
+    root: ${LOGGING_LEVEL:info}
+---
+
+spring:
+  config:
+    activate:
+      on-profile: local | dev
+  datasource:
+    url: jdbc:postgresql://localhost:5432/dev
+    username: kaboblak
+    password: ${SPRING_DATASOURCE_PASSWORD}
+  jpa:
+    properties:
+      hibernate:
+        show_sql: true
+        format_sql: true
+
+---
+
+spring:
+  config:
+    activate:
+      on-profile: test
+  datasource:
+    url: jdbc:postgresql://localhost:5432/test
+    username: kaboblak
+    password: ${SPRING_DATASOURCE_PASSWORD}
